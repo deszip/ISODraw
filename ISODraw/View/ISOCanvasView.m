@@ -8,6 +8,7 @@
 #import "ISOCanvasView.h"
 
 #import "ISOPointGenerator.h"
+#import "ISOSegment.h"
 
 @interface ISOCanvasView ()
 
@@ -17,6 +18,11 @@
 
 - (void)setDataset:(ISODataset *)dataset {
     _dataset = dataset;
+    [self setNeedsDisplay:YES];
+}
+
+- (void)setSegments:(NSArray<ISOSegment *> *)segments {
+    _segments = segments;
     [self setNeedsDisplay:YES];
 }
 
@@ -32,6 +38,10 @@
     [border stroke];
     
     [self drawPoints:self.dataset inRect:planeRect];
+    
+    if (self.segments) {
+        [self drawSegments:self.segments inRect:planeRect];
+    }
 }
 
 - (void)drawPoints:(ISODataset *)dataset inRect:(NSRect)rect {
@@ -65,6 +75,26 @@
     [@"100" drawAtPoint:NSMakePoint(centerInView.x + 10.0, centerInView.y + 8.0) withAttributes:attributes];
 }
 
+- (void)drawSegments:(NSArray<ISOSegment *> *)segments inRect:(NSRect)rect {
+    for (ISOSegment *segment in segments) {
+        NSBezierPath *path = [NSBezierPath bezierPath];
+        path.lineWidth = 2.2;
+        path.lineCapStyle = NSLineCapStyleButt;
+        NSPoint startPoint = [self viewPointForModelPoint:segment.start inRect:rect];
+        NSPoint endPoint = [self viewPointForModelPoint:segment.end inRect:rect];
+        [path moveToPoint:startPoint];
+        [path lineToPoint:endPoint];
+        NSColor *strokeColor = [self colorForValue:segment.threshold alpha:0.95];
+        [strokeColor setStroke];
+        [path stroke];
+
+        [[strokeColor colorWithAlphaComponent:0.85] setFill];
+        [[NSBezierPath bezierPathWithOvalInRect:NSMakeRect(startPoint.x - 1.5, startPoint.y - 1.5, 3.0, 3.0)] fill];
+        [[NSBezierPath bezierPathWithOvalInRect:NSMakeRect(endPoint.x - 1.5, endPoint.y - 1.5, 3.0, 3.0)] fill];
+    }
+}
+
+
 #pragma mark - Helpers
 
 - (NSPoint)viewPointForModelPoint:(NSPoint)point inRect:(NSRect)rect {
@@ -72,6 +102,12 @@
     double clampedY = MIN(MAX(point.y, 0.0), 1.0);
     return NSMakePoint(NSMinX(rect) + clampedX * rect.size.width,
                        NSMinY(rect) + clampedY * rect.size.height);
+}
+
+- (NSColor *)colorForValue:(double)value alpha:(double)alpha {
+    double normalizedValue = MIN(MAX(value / 100.0, 0.0), 1.0);
+    double hue = 0.62 - normalizedValue * 0.62;
+    return [NSColor colorWithHue:hue saturation:0.80 brightness:0.95 alpha:alpha];
 }
 
 @end

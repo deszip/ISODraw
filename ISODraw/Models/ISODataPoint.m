@@ -19,6 +19,10 @@
     return self;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@", [self dictionaryRepresentation]];
+}
+
 - (NSDictionary<NSString *,NSNumber *> *)dictionaryRepresentation {
     return @{
         @"x": @(self.x),
