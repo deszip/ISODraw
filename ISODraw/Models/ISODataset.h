@@ -17,9 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) ISODataPoint *centerPoint;
 @property (nonatomic, copy, readonly) NSArray<ISODataPoint *> *samplePoints;
 
+- (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithIdentifier:(NSString *)identifier
                        centerPoint:(ISODataPoint *)centerPoint
-                      samplePoints:(NSArray<ISODataPoint *> *)samplePoints;
+                      samplePoints:(NSArray<ISODataPoint *> *)samplePoints NS_DESIGNATED_INITIALIZER;
 
 - (NSArray<ISODataPoint *> *)allPoints;
 

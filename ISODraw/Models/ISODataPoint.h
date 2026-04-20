@@ -15,7 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) double y;
 @property (nonatomic, readonly) double value;
 
-- (instancetype)initWithX:(double)x y:(double)y value:(double)value;
+- (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
+
+- (instancetype)initWithX:(double)x y:(double)y value:(double)value NS_DESIGNATED_INITIALIZER;
 + (nullable instancetype)pointFromDictionary:(NSDictionary *)dictionary;
 
 - (NSDictionary<NSString *, NSNumber *> *)dictionaryRepresentation;

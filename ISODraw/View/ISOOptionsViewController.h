@@ -1,5 +1,5 @@
 //
-//  ISODatasetListViewController.h
+//  ISOOptionsViewController.h
 //  ISODraw
 //
 //  Created by Deszip on 17/04/2026.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ISODatasetListViewController : NSViewController
+@interface ISOOptionsViewController : NSViewController
 
 @end
 

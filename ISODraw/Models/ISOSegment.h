@@ -15,9 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSPoint start;
 @property (nonatomic, readonly) NSPoint end;
 
+- (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithThreshold:(double)threshold
                             start:(NSPoint)start
-                              end:(NSPoint)end;
+                              end:(NSPoint)end NS_DESIGNATED_INITIALIZER;
 
 @end
 

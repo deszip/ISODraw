@@ -13,10 +13,6 @@
 
 @implementation ISOWindowController
 
-- (IBAction)run:(NSButton *)sender {
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"iso_generate_dataset" object:self]];
-}
-
 - (void)windowDidLoad {
     [super windowDidLoad];
 }

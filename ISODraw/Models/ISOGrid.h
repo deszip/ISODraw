@@ -20,12 +20,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) double cellWidth;
 @property (nonatomic, readonly) double cellHeight;
 
+- (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithRows:(NSInteger)rows
                      columns:(NSInteger)columns
                         minX:(double)minX
                         minY:(double)minY
                         maxX:(double)maxX
-                        maxY:(double)maxY;
+                        maxY:(double)maxY NS_DESIGNATED_INITIALIZER;
 
 - (void)setValue:(double)value row:(NSInteger)row column:(NSInteger)column;
 - (double)valueAtRow:(NSInteger)row column:(NSInteger)column;

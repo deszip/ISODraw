@@ -701,23 +701,8 @@
                                 <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="w22-3x-jus"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="XhI-Jc-5mI"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="9CI-iU-oiA"/>
-                                <toolbarItem implicitItemIdentifier="72750DEB-FBC3-4D5E-A101-F26C04468FA2" label="Custom View" paletteLabel="Custom View" image="play.fill" catalog="system" sizingBehavior="auto" id="hRD-8j-rYI">
-                                    <nil key="toolTip"/>
-                                    <button key="view" id="3Va-gF-843">
-                                        <rect key="frame" x="32" y="14.5" width="12.5" height="13"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="play.fill" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="I8w-Lj-ZeC">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="run:" target="gui-P5-zKP" id="D2c-sP-ZuT"/>
-                                        </connections>
-                                    </button>
-                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="hRD-8j-rYI"/>
                                 <toolbarItem reference="9CI-iU-oiA"/>
                             </defaultToolbarItems>
                         </toolbar>
@@ -754,16 +739,110 @@
             </objects>
             <point key="canvasLocation" x="-564" y="1231"/>
         </scene>
-        <!--Dataset List View Controller-->
+        <!--Options View Controller-->
         <scene sceneID="FwU-bc-v7U">
             <objects>
-                <viewController id="ws1-JL-xhw" customClass="ISODatasetListViewController" sceneMemberID="viewController">
+                <viewController id="ws1-JL-xhw" customClass="ISOOptionsViewController" sceneMemberID="viewController">
                     <view key="view" id="uGm-G9-Grw">
                         <rect key="frame" x="0.0" y="0.0" width="336" height="518"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="30" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whg-lY-6EB">
+                                <rect key="frame" x="20" y="284" width="296" height="132"/>
+                                <subviews>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="36" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gKV-xK-LBZ">
+                                        <rect key="frame" x="0.0" y="108" width="208" height="24"/>
+                                        <subviews>
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VI6-CO-bJI">
+                                                <rect key="frame" x="-2" y="8" width="80" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Points count" id="dNh-9b-LfX">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NV2-xF-ski">
+                                                <rect key="frame" x="112" y="0.0" width="96" height="24"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="100" drawsBackground="YES" id="Oh5-vk-KKg">
+                                                    <font key="font" usesAppearanceFont="YES"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="36" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yc1-qf-sr5">
+                                        <rect key="frame" x="0.0" y="54" width="222" height="24"/>
+                                        <subviews>
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kgg-cs-tNs">
+                                                <rect key="frame" x="-2" y="8" width="94" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Grid resolution" id="UWe-Ev-QaJ">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lJE-Q9-kqz">
+                                                <rect key="frame" x="126" y="0.0" width="96" height="24"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="100" drawsBackground="YES" id="AIJ-I8-tXx">
+                                                    <font key="font" usesAppearanceFont="YES"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s2P-0G-pp6">
+                                        <rect key="frame" x="0.0" y="0.0" width="48" height="24"/>
+                                        <buttonCell key="cell" type="push" title="Run" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A9C-dR-Bgk">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="run:" target="ws1-JL-xhw" id="qQR-4H-Pae"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="whg-lY-6EB" firstAttribute="leading" secondItem="srI-gS-5cP" secondAttribute="leading" id="A5c-VP-rcm"/>
+                            <constraint firstItem="whg-lY-6EB" firstAttribute="top" secondItem="h9i-Mk-sEm" secondAttribute="top" constant="50" id="TLH-xu-asK"/>
+                            <constraint firstItem="srI-gS-5cP" firstAttribute="trailing" secondItem="whg-lY-6EB" secondAttribute="trailing" id="WJc-7W-GHn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="h9i-Mk-sEm"/>
                         <viewLayoutGuide key="layoutMargins" id="srI-gS-5cP"/>
                     </view>
+                    <connections>
+                        <outlet property="gridResolutionField" destination="lJE-Q9-kqz" id="2VX-F4-R7k"/>
+                        <outlet property="pointsCountField" destination="NV2-xF-ski" id="jYr-Pv-QKo"/>
+                    </connections>
                 </viewController>
                 <customObject id="sRG-vD-K2F" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -799,7 +878,4 @@
             <point key="canvasLocation" x="-361" y="1837"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="play.fill" catalog="system" width="12" height="13"/>
-    </resources>
 </document>

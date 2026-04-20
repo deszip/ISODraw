@@ -37,10 +37,32 @@
     border.lineWidth = 1.0;
     [border stroke];
     
+    [self drawPlaneGridInRect:planeRect];
+    
     [self drawPoints:self.dataset inRect:planeRect];
     
     if (self.segments) {
         [self drawSegments:self.segments inRect:planeRect];
+    }
+}
+
+- (void)drawPlaneGridInRect:(NSRect)rect {
+    [[NSColor colorWithCalibratedWhite:0.92 alpha:1.0] setStroke];
+    for (NSInteger index = 1; index < 10; index++) {
+        CGFloat x = NSMinX(rect) + rect.size.width * index / 10.0;
+        CGFloat y = NSMinY(rect) + rect.size.height * index / 10.0;
+
+        NSBezierPath *vertical = [NSBezierPath bezierPath];
+        [vertical moveToPoint:NSMakePoint(x, NSMinY(rect))];
+        [vertical lineToPoint:NSMakePoint(x, NSMaxY(rect))];
+        vertical.lineWidth = 0.5;
+        [vertical stroke];
+
+        NSBezierPath *horizontal = [NSBezierPath bezierPath];
+        [horizontal moveToPoint:NSMakePoint(NSMinX(rect), y)];
+        [horizontal lineToPoint:NSMakePoint(NSMaxX(rect), y)];
+        horizontal.lineWidth = 0.5;
+        [horizontal stroke];
     }
 }
 

@@ -7,22 +7,12 @@
 
 #import "ISOCanvasViewController.h"
 
-#import "ISOPointGenerator.h"
-#import "ISOGridInterpolator.h"
-#import "ISODataset.h"
-#import "ISOGrid.h"
-#import "ISOMarchingSquaresBuilder.h"
-
+#import "ISOPipeline.h"
 #import "ISOCanvasView.h"
 
 @interface ISOCanvasViewController ()
 
-@property (strong, nonatomic) ISOPointGenerator *pointGenerator;
-@property (strong, nonatomic) ISOGridInterpolator *gridInterpolator;
-@property (strong, nonatomic) ISOMarchingSquaresBuilder *marchingSquaresBuilder;
-
-@property (strong, nonatomic) ISODataset *dataset;
-
+@property (strong, nonatomic) ISOPipeline *pipeline;
 @property (weak) IBOutlet ISOCanvasView *canvasView;
 
 @end
@@ -32,36 +22,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.pointGenerator = [ISOPointGenerator new];
-    self.gridInterpolator = [ISOGridInterpolator new];
-    self.marchingSquaresBuilder = [ISOMarchingSquaresBuilder new];
+    self.pipeline = [ISOPipeline new];
     
-    [self regenerateDataset];
+    [self regenerate];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRun:) name:@"iso_generate_dataset" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRun:) name:@"iso_generate" object:nil];
 }
 
 - (void)handleRun:(NSNotification *)notification {
-    [self regenerateDataset];
+    NSNumber *pointsCount = notification.userInfo[@"points_count"];
+    NSNumber *gridResolution = notification.userInfo[@"grid_resolution"];
+    
+    [self.pipeline setPointCount:pointsCount.integerValue];
+    [self.pipeline setGridResolution:gridResolution.integerValue];
+    
+    [self regenerate];
 }
 
-- (void)regenerateDataset {
-    self.dataset = [self.pointGenerator generateDatasetWithPointCount:100];
-    [self.canvasView setDataset:self.dataset];
+- (void)regenerate {
+    [self.pipeline run];
     
-    // Tresholds
-    NSMutableArray<NSNumber *> *thresholds = [NSMutableArray array];
-    for (NSInteger value = 90; value >= 10; value -= 10) {
-        [thresholds addObject:@(value)];
-    }
-    
-    NSInteger gridResolution = 100;
-    ISOGrid *grid = [self.gridInterpolator interpolateDataset:self.dataset
-                                                         rows:gridResolution
-                                                      columns:gridResolution];
-    
-    NSArray *segments = [self.marchingSquaresBuilder buildSegmentsForGrid:grid thresholds:thresholds];
-    [self.canvasView setSegments:segments];
+    [self.canvasView setDataset:self.pipeline.dataset];
+    [self.canvasView setSegments:self.pipeline.segments];
 }
 
 @end

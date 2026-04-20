@@ -7,9 +7,20 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ISODataset.h"
+#import "ISOSegment.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ISOPipeline : NSObject
+
+@property (assign, nonatomic) NSUInteger gridResolution;
+@property (assign, nonatomic) NSUInteger pointCount;
+
+@property (strong, nonatomic, readonly) ISODataset *dataset;
+@property (strong, nonatomic, readonly) NSArray<ISOSegment *> *segments;
+
+- (void)run;
 
 @end
 

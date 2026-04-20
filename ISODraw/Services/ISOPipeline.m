@@ -7,31 +7,49 @@
 
 #import "ISOPipeline.h"
 
+#import "ISOPointGenerator.h"
+#import "ISOGridInterpolator.h"
+#import "ISOMarchingSquaresBuilder.h"
+
 @interface ISOPipeline ()
 
-//@property (strong, nonatomic) ISOPointGenerator *pointGenerator;
+@property (strong, nonatomic) ISOPointGenerator *pointGenerator;
+@property (strong, nonatomic) ISOGridInterpolator *gridInterpolator;
+@property (strong, nonatomic) ISOMarchingSquaresBuilder *marchingSquaresBuilder;
 
 @end
 
 @implementation ISOPipeline
 
-//- (void)regenerateDataset {
-//    self.dataset = [self.pointGenerator generateDatasetWithPointCount:100];
-//    [self.canvasView setDataset:self.dataset];
-//    
-//    // Tresholds
-//    NSMutableArray<NSNumber *> *thresholds = [NSMutableArray array];
-//    for (NSInteger value = 90; value >= 10; value -= 10) {
-//        [thresholds addObject:@(value)];
-//    }
-//    
-//    NSInteger gridResolution = 100;
-//    ISOGrid *grid = [self.gridInterpolator interpolateDataset:self.dataset
-//                                                         rows:gridResolution
-//                                                      columns:gridResolution];
-//    
-//    NSArray *segments = [self.marchingSquaresBuilder buildSegmentsForGrid:grid thresholds:thresholds];
-//    [self.canvasView setSegments:segments];
-//}
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _gridResolution = 100;
+        _pointCount = 100;
+        _segments = @[];
+        
+        _pointGenerator = [ISOPointGenerator new];
+        _gridInterpolator = [ISOGridInterpolator new];
+        _marchingSquaresBuilder = [ISOMarchingSquaresBuilder new];
+    }
+    
+    return self;
+}
+
+- (void)run {
+    _dataset = [self.pointGenerator generateDatasetWithPointCount:self.pointCount];
+    
+    // Tresholds
+    NSMutableArray<NSNumber *> *thresholds = [NSMutableArray array];
+    for (NSInteger value = 90; value >= 10; value -= 10) {
+        [thresholds addObject:@(value)];
+    }
+    
+    ISOGrid *grid = [self.gridInterpolator interpolateDataset:self.dataset
+                                                         rows:self.gridResolution
+                                                      columns:self.gridResolution];
+    
+    _segments = [self.marchingSquaresBuilder buildSegmentsForGrid:grid thresholds:thresholds];
+}
 
 @end
