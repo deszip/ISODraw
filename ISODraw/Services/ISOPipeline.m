@@ -26,6 +26,7 @@
     if (self) {
         _gridResolution = 100;
         _pointCount = 100;
+        _useDeviation = YES;
         _segments = @[];
         
         _pointGenerator = [ISOPointGenerator new];

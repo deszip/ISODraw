@@ -744,11 +744,11 @@
             <objects>
                 <viewController id="ws1-JL-xhw" customClass="ISOOptionsViewController" sceneMemberID="viewController">
                     <view key="view" id="uGm-G9-Grw">
-                        <rect key="frame" x="0.0" y="0.0" width="336" height="518"/>
+                        <rect key="frame" x="0.0" y="0.0" width="520" height="518"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="30" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whg-lY-6EB">
-                                <rect key="frame" x="20" y="284" width="296" height="132"/>
+                                <rect key="frame" x="20" y="284" width="480" height="132"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="36" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gKV-xK-LBZ">
                                         <rect key="frame" x="0.0" y="108" width="208" height="24"/>
@@ -808,6 +808,25 @@
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
+                                    <stackView distribution="fillProportionally" orientation="horizontal" alignment="top" spacing="36" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="SUN-UY-SUp">
+                                        <rect key="frame" x="129" y="54" width="222" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="51R-WJ-eNC">
+                                                <rect key="frame" x="0.0" y="8" width="222" height="16"/>
+                                                <buttonCell key="cell" type="check" title="Use deviation" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wBL-z8-ehz">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                            </button>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s2P-0G-pp6">
                                         <rect key="frame" x="0.0" y="0.0" width="48" height="24"/>
                                         <buttonCell key="cell" type="push" title="Run" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A9C-dR-Bgk">
@@ -823,8 +842,10 @@
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
@@ -840,6 +861,7 @@
                         <viewLayoutGuide key="layoutMargins" id="srI-gS-5cP"/>
                     </view>
                     <connections>
+                        <outlet property="deviationCheck" destination="51R-WJ-eNC" id="Odt-4g-6sL"/>
                         <outlet property="gridResolutionField" destination="lJE-Q9-kqz" id="2VX-F4-R7k"/>
                         <outlet property="pointsCountField" destination="NV2-xF-ski" id="jYr-Pv-QKo"/>
                     </connections>

@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ISOPointGenerator : NSObject
 
+@property (assign, nonatomic) BOOL useDeviation;
+
 - (ISODataset *)generateDatasetWithPointCount:(NSUInteger)pointCount;
     
 @end

@@ -32,6 +32,7 @@
 - (void)handleRun:(NSNotification *)notification {
     NSNumber *pointsCount = notification.userInfo[@"points_count"];
     NSNumber *gridResolution = notification.userInfo[@"grid_resolution"];
+    NSNumber *useDeviation = notification.userInfo[@"use_deviation"];
     
     [self.pipeline setPointCount:pointsCount.integerValue];
     [self.pipeline setGridResolution:gridResolution.integerValue];

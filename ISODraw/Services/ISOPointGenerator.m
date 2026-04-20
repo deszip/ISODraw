@@ -11,6 +11,15 @@
 
 @implementation ISOPointGenerator
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _useDeviation = YES;
+    }
+    
+    return self;
+}
+
 - (ISODataset *)generateDatasetWithPointCount:(NSUInteger)pointCount {
     // Get a center somewhere in the corner, in 20 to 80 percents of area
     double centerX = [self randomDoubleInRangeFrom:0.20 to:0.80];
@@ -41,10 +50,14 @@
         double distance = hypot(x - centerX, y - centerY);
         double normalizedDistance = maxDistance > 0.0 ? distance / maxDistance : 0.0;
         double baseValue = MAX(0.0, 100.0 * (1.0 - normalizedDistance));
+        double value = baseValue;
         
-        // add a deviation of 5 points
-        double deviation = [self randomDoubleInRangeFrom:-5.0 to:5.0];;
-        double value = MIN(100.0, MAX(0.0, baseValue + deviation));
+        // Add a deviation of 5 points
+        if (self.useDeviation == YES) {
+            double deviation = [self randomDoubleInRangeFrom:-5.0 to:5.0];;
+            value = MIN(100.0, MAX(0.0, baseValue + deviation));
+        }
+        
         [samplePoints addObject:[[ISODataPoint alloc] initWithX:x y:y value:value]];
     }
 

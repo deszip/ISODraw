@@ -11,6 +11,7 @@
 
 @property (weak) IBOutlet NSTextField *pointsCountField;
 @property (weak) IBOutlet NSTextField *gridResolutionField;
+@property (weak) IBOutlet NSButton *deviationCheck;
 
 @end
 
@@ -24,6 +25,7 @@
     NSDictionary *options = @{
         @"points_count": @(self.pointsCountField.intValue),
         @"grid_resolution": @(self.gridResolutionField.intValue),
+        @"use_deviation": @(self.deviationCheck.state == NSControlStateValueOn)
     };
     NSNotification *notification = [NSNotification notificationWithName:@"iso_generate" object:self userInfo:options];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
