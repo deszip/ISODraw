@@ -38,6 +38,7 @@
 }
 
 - (void)run {
+    [self.pointGenerator setUseDeviation:self.useDeviation];
     _dataset = [self.pointGenerator generateDatasetWithPointCount:self.pointCount];
     
     // Tresholds

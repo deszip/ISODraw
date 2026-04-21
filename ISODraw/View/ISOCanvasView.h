@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ISOCanvasView : NSView
 
+@property (assign, nonatomic) NSUInteger gridResolution;
 @property (nonatomic, strong, nullable) ISODataset *dataset;
 @property (nonatomic, strong, nullable) NSArray <ISOSegment *> *segments;
 

@@ -26,6 +26,11 @@
     [self setNeedsDisplay:YES];
 }
 
+- (void)setGridResolution:(NSUInteger)gridResolution {
+    _gridResolution = gridResolution;
+    [self setNeedsDisplay:YES];
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     
@@ -48,9 +53,9 @@
 
 - (void)drawPlaneGridInRect:(NSRect)rect {
     [[NSColor colorWithCalibratedWhite:0.92 alpha:1.0] setStroke];
-    for (NSInteger index = 1; index < 10; index++) {
-        CGFloat x = NSMinX(rect) + rect.size.width * index / 10.0;
-        CGFloat y = NSMinY(rect) + rect.size.height * index / 10.0;
+    for (NSInteger index = 1; index < self.gridResolution; index++) {
+        CGFloat x = NSMinX(rect) + rect.size.width * index / self.gridResolution;
+        CGFloat y = NSMinY(rect) + rect.size.height * index / self.gridResolution;
 
         NSBezierPath *vertical = [NSBezierPath bezierPath];
         [vertical moveToPoint:NSMakePoint(x, NSMinY(rect))];

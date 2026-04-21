@@ -36,6 +36,7 @@
     
     [self.pipeline setPointCount:pointsCount.integerValue];
     [self.pipeline setGridResolution:gridResolution.integerValue];
+    [self.pipeline setUseDeviation:useDeviation.boolValue];
     
     [self regenerate];
 }
@@ -43,6 +44,7 @@
 - (void)regenerate {
     [self.pipeline run];
     
+    [self.canvasView setGridResolution:self.pipeline.gridResolution];
     [self.canvasView setDataset:self.pipeline.dataset];
     [self.canvasView setSegments:self.pipeline.segments];
 }
